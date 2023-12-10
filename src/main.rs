@@ -1,10 +1,10 @@
 use std::time::{Instant};
-mod runner;
-mod statics;
+mod day1;
+mod day_1_statics;
 
 fn main() {
     let start = Instant::now();
-    println!("day1: {}",  runner::parse_file("./data/day_1_input.dat"));
+    println!("day1: {}", day1::parse_file("./data/day_1_input.dat"));
     let duration = start.elapsed();
     println!("Time elapsed in expensive_function() is: {:?}", duration);
 }
