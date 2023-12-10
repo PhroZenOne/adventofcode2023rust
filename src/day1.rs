@@ -38,29 +38,29 @@ mod tests {
 
     #[test]
     fn parse_number_test() {
-        assert_eq!(Some(1), parse_number("1", ));
-        assert_eq!(Some(1), parse_number("one", ));
-        assert_eq!(Some(0), parse_number("0", ));
-        assert_eq!(Some(0), parse_number("zero", ));
-        assert_eq!(Some(9), parse_number("nine", ));
-        assert_eq!(Some(9), parse_number("9", ));
+        assert_eq!(Some(1), parse_number("1"));
+        assert_eq!(Some(1), parse_number("one"));
+        assert_eq!(Some(0), parse_number("0"));
+        assert_eq!(Some(0), parse_number("zero"));
+        assert_eq!(Some(9), parse_number("nine"));
+        assert_eq!(Some(9), parse_number("9"));
     }
 
     #[test]
     fn basic_string() {
-        let numbers = parse_numbers("12", );
+        let numbers = parse_numbers("12");
         assert_eq!((Some(1), Some(2)), numbers);
     }
 
     #[test]
     fn basic_with_char_string() {
-        let numbers = parse_numbers("x1x2x", );
+        let numbers = parse_numbers("x1x2x");
         assert_eq!((Some(1), Some(2)), numbers);
     }
 
     #[test]
     fn basic_day_two() {
-        let numbers = parse_numbers("two1nine", );
+        let numbers = parse_numbers("two1nine");
         assert_eq!((Some(2), Some(9)), numbers);
     }
 }
