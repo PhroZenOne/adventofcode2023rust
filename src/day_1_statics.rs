@@ -4,10 +4,9 @@ use lazy_static::lazy_static;
 // So this is some magic that makes the NUMBER_FINDER a static instance...
 lazy_static! {
     /// Uses the AhoCorasick algorithm (https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm)
-    /// to search fir the first instance of the numbers.
-    /// the index returned is the index in NUMBERS_TO_INDEX and as it contains the numbers 0-9 three times
+    /// to search for the first instance of the numbers.
+    /// The index returned is the index in NUMBERS_TO_INDEX and as it contains the numbers 0-9 three times
     /// in different versions.
-    ///
     /// This means that we can use index % 10 to get the actual number.
     pub static ref NUMBER_FINDER: AhoCorasick = AhoCorasick::builder()
         .match_kind(MatchKind::LeftmostFirst)
@@ -40,7 +39,6 @@ const EIGHT_STR_REV: &'static str = "thgie";
 const NINE_STR_REV: &'static str = "enin";
 
 // Real numbers
-
 const ZERO: &'static str = "0";
 const ONE: &'static str = "1";
 const TWO: &'static str = "2";
