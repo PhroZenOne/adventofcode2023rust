@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn parse_file_part_1(path: &str) -> u32 {
+pub fn parse_file_part_1(path: &str, part_two: bool) -> u32 {
     let string = read_lines_from_file(path);
     let width = string.find("\n").expect("it should have a newline") + 1;
     let bytes = string.as_bytes();
@@ -19,16 +19,30 @@ pub fn parse_file_part_1(path: &str) -> u32 {
             // not checked yet, might be read later
             i += 1;
             continue;
+        } else if part_two && center_char != '*' {
+            checked[i] = true;
+            i += 1;
+            continue;
         }
+
         checked[i] = true;
+        let mut found_values = Vec::new();
+
         let surrounding_positions = get_targets(width, i, total_length, &checked);
         for pos in surrounding_positions {
             if checked[pos] {
                 continue;
             }
             let (new_checked, value) = check_target(bytes, pos);
-            sum += value;
+            if part_two && value != 0 {
+                found_values.push(value);
+            } else {
+                sum += value;
+            }
             new_checked.iter().for_each(|&x| checked[x] = true)
+        }
+        if found_values.len() == 2 {
+            sum += found_values.into_iter().reduce(|a, b| a * b).expect("there should have been a message");
         }
         i += 1;
     }
@@ -82,6 +96,6 @@ mod tests {
 
     #[test]
     fn basic_parse() {
-        println!("day3: {}", parse_file_part_1("./data/day3/calibration.dat"));
+        println!("day3: {}", parse_file_part_1("./data/day3/calibration.dat", true));
     }
 }
