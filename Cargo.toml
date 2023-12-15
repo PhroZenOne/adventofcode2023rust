@@ -10,4 +10,5 @@ aho-corasick = "1.1.2"
 time = "0.3.30"
 lazy_static = "1.4.0"
 regex = { version = "1.10.2", features = [] }
+rayon = "1.8.0"
 
